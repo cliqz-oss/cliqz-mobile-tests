@@ -98,7 +98,7 @@ class ScriptUtils:
                 scr_name = self.screenshot("FAIL_" + msg, override=True, absNoScr=absNoScr)
                 self.settings.logger.error("%s :: [ERROR] :: %s(%s)[%i] :: TEST CASE FAILED :: %s :: Screenshot: %s" %
                                            (timer, func.co_name, func.co_filename.split('/')[-1], func.co_firstlineno, msg, scr_name))
-                for k, v in self.settings.fullReport.iteritems():
+                for k, v in self.settings.fullReport.items():
                     if self._testMethodName[:6] in k:
                         testSuite = k
                 if msg in self.settings.fullReport[testSuite][self._testMethodName]:
@@ -109,7 +109,7 @@ class ScriptUtils:
             elif testStatus.lower() == 'pass':
                 self.settings.logger.info("%s :: [INFO] :: %s(%s)[%i] :: TEST CASE PASSED :: %s" %
                                           (timer, func.co_name, func.co_filename.split('/')[-1], func.co_firstlineno, msg))
-                for k, v in self.settings.fullReport.iteritems():
+                for k, v in self.settings.fullReport.items():
                     if self._testMethodName[:6] in k:
                         testSuite = k
                 if msg in self.settings.fullReport[testSuite][self._testMethodName]:
@@ -122,7 +122,7 @@ class ScriptUtils:
             elif testStatus.lower() == 'skip':
                 self.settings.logger.info("%s :: [INFO] :: %s(%s)[%i] :: TEST CASE SKIPPED :: %s" %
                                           (timer, func.co_name, func.co_filename.split('/')[-1], func.co_firstlineno, msg))
-                for k, v in self.settings.fullReport.iteritems():
+                for k, v in self.settings.fullReport.items():
                     if self._testMethodName[:6] in k:
                         testSuite = k
                 if msg in self.settings.fullReport[testSuite][self._testMethodName]:

@@ -58,7 +58,8 @@ class TestGhosteryControlCenter:
         self.assertIsEqual(overviewStatus and not(siteTrackersStatus and allTrackersStatus),
                            True, "Check if Ghostery CC Overview Button is selected by Default.", noException=True)
         siteTrackersButton.click()
-        self.sleep(5)
+        self.sleep(3)
+        tabsController = PGCC.getGhosteryTabsController(ghosteryCC) if self.isPlatform("ios") else None
         overviewButton = PGCC.getGhosteryOverviewButton(tabsController)
         siteTrackersButton = PGCC.getGhosterySiteTrackersButton(tabsController)
         allTrackersButton = PGCC.getGhosteryAllTrackersButton(tabsController)
@@ -72,7 +73,7 @@ class TestGhosteryControlCenter:
         self.assertIsEqual(siteTrackersStatus and not (overviewStatus and allTrackersStatus),
                            True, "Check if Clicking on Site Trackers Changes the Selection.", noException=True)
         allTrackersButton.click()
-        self.sleep(5)
+        self.sleep(3)
         overviewButton = PGCC.getGhosteryOverviewButton(tabsController)
         siteTrackersButton = PGCC.getGhosterySiteTrackersButton(tabsController)
         allTrackersButton = PGCC.getGhosteryAllTrackersButton(tabsController)
@@ -86,8 +87,8 @@ class TestGhosteryControlCenter:
         self.assertIsEqual(allTrackersStatus and not (siteTrackersStatus and overviewStatus),
                            True, "Check if Clicking on All Trackers Changes the Selection.", noException=True)
         overviewButton.click()
-        self.sleep(5)
-        self.assertNotEqual(PGCC.getGhosteryDonut(), None, "Check if Ghostery CC has A Donut.")
+        self.sleep(3)
+        self.assertNotEqual(PGCC.getGhosteryDonut(PGCC.getGhosteryCC()), None, "Check if Ghostery CC has A Donut.")
         notch = PGCC.getGhosteryNotch(ghosteryCC)
         self.assertNotEqual(notch, None, "Check if Enhanced Options section or Notch is present.")
         ghosty.click()

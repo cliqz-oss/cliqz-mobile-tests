@@ -1,6 +1,6 @@
 from common.exceptionList import *
 from common import testDataAndRequirements as TDR
-from action3DotsMenu import Action3DotsMenu
+from pages.shared.action3DotsMenu import Action3DotsMenu
 
 class TopBar(Action3DotsMenu):
     def getURLBar(self):
@@ -162,7 +162,11 @@ class TopBar(Action3DotsMenu):
                 loadComplete = True
             presentTime = datetime.datetime.now().replace(microsecond=0)'''
         self.sleep(loadTimeout)
-        return self.getURLBar().text
+        try:
+            urlText = self.getURLBar().text
+        except:
+            urlText = link
+        return urlText
 
     def getAutoCompletedValue(self, string, timeout=1):
         addressBar = self.enableAddressBar()

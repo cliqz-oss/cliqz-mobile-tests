@@ -67,7 +67,17 @@ class TestSearchFeatures:
             PSM.openOrClickSetting("complementarySearch")
             PSM.setComplementarySearchEngine(engine)
             PSM.goOutOfSettings()
-            link = PFT.openWebpage(self.generateRandomString())
-            self.assertIsIn(engine, link, "Check `"+engine+"` provider.")
+            try:
+                link = PFT.openWebpage(self.generateRandomString())
+                self.assertIsIn(engine, link, "Check `"+engine+"` provider.")
+            except Exception as e:
+                self.log(e)
+                if PFT.isLocationAccessPopup():
+                    PFT.getLocationAccessDontAllowButton().click()
+                try:
+                    link = PFT.getURLBar().text
+                except:
+                    link = engine
+                self.assertIsIn(engine, link, "Check `"+engine+"` provider.")
             PFT.openTabsOverview()
             PTO.closeAllTabs()

@@ -100,7 +100,7 @@ class DeviceUtils:
 
     def parseEventData(self, data, replaceChars):
         if data=="":
-            print "Empty String"
+            print("Empty String")
             return None
         else:
             data = data.replace("\\n", "")
@@ -123,7 +123,7 @@ class DeviceUtils:
             for eventData in event.keys():
                 string += str(eventData) + ": " + str(event[eventData]) + "\n"
         if telemetryFile==None:
-            print string
+            print(string)
         else:
             telemetryFile.write(string)
 

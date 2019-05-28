@@ -7,7 +7,7 @@ echo "*** Install and Setup Virtualenv ***"
 echo "Versions Pre-install:"
 python -V && pip -V
 pip install virtualenv
-virtualenv -p python venv
+virtualenv -p python3 venv
 source venv/bin/activate
 echo "Versions Post-install:"
 python -V && pip -V

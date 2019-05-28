@@ -1,6 +1,6 @@
 import socket, json, subprocess, time, os
 from pages.shared.alertBox import AlertBox
-from geckoBy import GeckoBy
+from gecko.geckoBy import GeckoBy
 from common.exceptionList import *
 
 class GeckoElement:
@@ -92,9 +92,9 @@ class GeckoDriver:
     def prettyPrint(self, parsedData):
         if isinstance(parsedData, list):
             for data in parsedData:
-                print json.dumps(data, indent=4, sort_keys=True)
+                print(json.dumps(data, indent=4, sort_keys=True))
         else:
-            print json.dumps(parsedData, indent=4, sort_keys=True)
+            print(json.dumps(parsedData, indent=4, sort_keys=True))
 
     def getElementById(self, id):
         elementFound = False

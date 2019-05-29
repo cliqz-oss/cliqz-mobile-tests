@@ -113,8 +113,8 @@ class Locators:
     }
 
     readerViewButton = {
-        'android' : (MB.XPATH, "//android.widget.ImageButton[contains(@content-desc, 'Reader View')]"),
-        'ios' : (MB.ACCESSIBILITY_ID, "TabLocationView.readerModeButton")
+        'android': (MB.XPATH, "//android.widget.ImageButton[contains(@content-desc, 'Reader View')]"),
+        'ios': (MB.ACCESSIBILITY_ID, "TabLocationView.readerModeButton")
     }
 
     stopLoadingButton = {
@@ -134,12 +134,20 @@ class Locators:
     }
 
     actionButton = {
-        'android' : TBD,
-        'ios' : (MB.ACCESSIBILITY_ID, "TabToolbar.menuButton")
+        'android': TBD,
+        'ios': (MB.ACCESSIBILITY_ID, "TabToolbar.menuButton")
     }
     threeDotsButton = {
         'android' : (MB.ID, 'menu'),
-        'ios': (MB.ACCESSIBILITY_ID, "UrlBar.pageOptionsButton")
+        'ios': (MB.ACCESSIBILITY_ID, "TabLocationView.pageOptionsButton")
+    }
+
+    locationPopup = {}
+    locationPopup['complete'] = {
+        'ios': (MB.XPATH, "//XCUIElementTypeAlert[contains(@name, 'access your location while you are using the app')]")
+    }
+    locationPopup['dontallow'] = {
+        'ios': (MB.XPATH, "//XCUIElementTypeButton[contains(@name, ' Allow')]")
     }
 
     ####################################################################################################################
@@ -521,7 +529,7 @@ class Locators:
     }
     clearPrivateDataList['clearData'] = {
         'android': (MB.XPATH, "//android.widget.Button[@text='Clear data']"),
-        'ios': (MB.XPATH, "//XCUIElementTypeStaticText[@name='Clear Private Data']")
+        'ios': (MB.ACCESSIBILITY_ID, "ClearPrivateData")
     }
     clearPrivateDataList['confirmationAccept'] = {
         'ios': (MB.XPATH, "//XCUIElementTypeButton[@name='OK']")

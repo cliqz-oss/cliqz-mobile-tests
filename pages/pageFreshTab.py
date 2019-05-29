@@ -227,3 +227,20 @@ class FreshTab(TopBar, AllUtils):
         except Exception as e:
             self.log(e)
             return None
+
+    ###############################
+    # Home Screen Onboarding Popup
+    ###############################
+    def getLocationAccessPopup(self):
+        return self.getElement("locationPopup", "complete", timeout=3)
+
+    def isLocationAccessPopup(self):
+        try:
+            if self.getLocationAccessPopup():
+                return True
+        except Exception as e:
+            self.log(e)
+        return False
+
+    def getLocationAccessDontAllowButton(self):
+        return self.getElement("locationPopup", "dontallow", timeout=3)

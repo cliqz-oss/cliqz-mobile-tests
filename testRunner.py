@@ -12,8 +12,8 @@ if os.environ.get('TEST_TYPE') == "performance":
 else:
     mainPackage = "testSuites."
 
-reload(sys)
-sys.setdefaultencoding('utf8')
+# importlib.reload(sys)
+# sys.setdefaultencoding('utf8')
 
 class TestRunner(getattr(importlib.import_module(mainPackage+os.environ.get('MODULE')), os.environ.get('TEST')), AllUtils, unittest.TestCase):
 #class TestRunner(CompleteSuite, AllUtils, unittest.TestCase):
@@ -88,7 +88,7 @@ class TestRunner(getattr(importlib.import_module(mainPackage+os.environ.get('MOD
         endString += "Total Time taken by the Test Suite: " + str(end_time - cls.settings.start_time) + "\n\n"
         endString += "| Total: " + str(cls.settings.testCount['total']) + " | Pass: " + str(cls.settings.testCount['pass']) + " | Fail: " + str(
             cls.settings.testCount['fail']) + " | Skipped: " + str(cls.settings.testCount['skip']) + " |\n"
-        print endString
+        print(endString)
         cls.settings.prettyPrintReport()
         reportFileName = os.environ.get('reportFile') or "testreport.log"
         reportFile = open(cls.settings.app_brand+reportFileName, "w")

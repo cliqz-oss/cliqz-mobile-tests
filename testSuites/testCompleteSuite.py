@@ -1,9 +1,9 @@
-from test01BasicView import TestBasicView
-from test02SettingsMenu import TestSettingsMenu
-from test03FreshTabFeatures import TestFreshTabFeatures
-from test04UserTabFeatures import TestUserTabFeatures
-from test05GhosteryControlCenter import TestGhosteryControlCenter
-from test06SearchFeatures import TestSearchFeatures
+from testSuites.test01BasicView import TestBasicView
+from testSuites.test02SettingsMenu import TestSettingsMenu
+from testSuites.test03FreshTabFeatures import TestFreshTabFeatures
+from testSuites.test04UserTabFeatures import TestUserTabFeatures
+from testSuites.test05GhosteryControlCenter import TestGhosteryControlCenter
+from testSuites.test06SearchFeatures import TestSearchFeatures
 
 class CompleteSuite(
     TestBasicView,

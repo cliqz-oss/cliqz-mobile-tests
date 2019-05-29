@@ -39,14 +39,14 @@ if [ "$platformName" == "ios" ]; then
     # UDID of the device or simulator
     export udid=""
     if [ "${udid}" == "" ]; then
-        export udid=$(xcrun simctl list | grep -m1 "Booted" | tr -s ' ' | cut -d ' ' -f 4 | sed 's/[()]//g')
+        export udid=$(xcrun simctl list | grep -m1 "Booted" | tr -s ' ' | cut -d ' ' -f 3 | sed 's/[()]//g')
     fi
     echo "Device UDID: ${udid}"
 
     # iPhone 6, iPhone X, etc.
     export deviceName=""
     if [ "${deviceName}" == "" ]; then
-        export deviceName=$(xcrun simctl list | grep -m1 "Booted" | tr -s ' ' | cut -d ' ' -f 2 -f 3)
+        export deviceName=$(xcrun simctl list | grep -m1 "Booted" | tr -s ' ' | cut -d ' ' -f 2 -f 2)
     fi
     echo "Device Name: ${deviceName}"
 

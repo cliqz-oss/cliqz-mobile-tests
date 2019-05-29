@@ -1,6 +1,6 @@
 import os, logging, datetime, time
 from appium import webdriver as WD
-from reportGenerator import ReportGenerator
+from common.reportGenerator import ReportGenerator
 from gecko.geckoConnect import GeckoDriver
 
 class Settings:
@@ -26,7 +26,7 @@ class Settings:
         'udid': os.environ.get('udid'),
         'deviceName': os.environ.get('deviceName'),
         'platformVersion' : os.environ.get('platformVersion'),
-        'noReset' : True
+        'noReset': False
     }
 
     desired_caps_android = {
@@ -36,7 +36,7 @@ class Settings:
         "deviceName": os.environ.get('deviceName'),
         "automationName": "UiAutomator2",
         "app": os.environ.get('app') or referenceApk,
-        "noReset" : True
+        "noReset": True
     }
 
     desired_capabilities_cloud = {
@@ -99,9 +99,9 @@ class Settings:
     def getDriver(self):
         if self.driver == None:
             # set up webdriver
-            print "\n\nWebDriver request initiated. Waiting for response, this typically takes 2-3 mins"
+            print("\n\nWebDriver request initiated. Waiting for response, this typically takes 2-3 mins")
             self.start_time = datetime.datetime.now().replace(microsecond=0)
-            print "Start Time:" + time.strftime("%H:%M:%S")
+            print("Start Time:" + time.strftime("%H:%M:%S"))
             if self.BitBar:
                 self.driver = WD.Remote(command_executor=self.appiumServer,
                                               desired_capabilities=self.desired_capabilities_cloud)
@@ -109,8 +109,8 @@ class Settings:
                 self.desired_caps = self.desired_caps_android if self.platform_name == "android" else self.desired_caps_ios
                 self.driver = WD.Remote(self.appiumServer, self.desired_caps)
             end_time = datetime.datetime.now().replace(microsecond=0)
-            print "WebDriver response received at: " + time.strftime("%H:%M:%S")
-            print "Time Taken to Launch Appium: " + str(end_time - self.start_time) + "\n\n"
+            print("WebDriver response received at: " + time.strftime("%H:%M:%S"))
+            print("Time Taken to Launch Appium: " + str(end_time - self.start_time) + "\n\n")
         return self.driver
 
     def getInstance(self):
@@ -120,11 +120,11 @@ class Settings:
         for testSuite in sorted(self.fullReport):
             if self.fullReport[testSuite] == {}:
                 break
-            print "\n\n*** "+testSuite+" ***"
+            print("\n\n*** "+testSuite+" ***")
             for testMethod in sorted(self.fullReport[testSuite]):
-                print "\n* "+testMethod+" *"
+                print("\n* "+testMethod+" *")
                 for testCase in self.fullReport[testSuite][testMethod]:
-                    print "-%s- %s" % (self.fullReport[testSuite][testMethod][testCase], testCase)
+                    print("-%s- %s" % (self.fullReport[testSuite][testMethod][testCase], testCase))
 
     def writeReport(self, filePointer, endString):
         filePointer.write("*****     TEST REPORT FILE     *****")

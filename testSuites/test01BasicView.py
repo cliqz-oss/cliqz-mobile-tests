@@ -82,7 +82,7 @@ class TestBasicView:
         self.log("Check 'First Launch'.", "testsuite")
         PFT = FreshTab(self.settings)
         Onboarding(self.settings).startBrowsing()
-        self.assertNotEqual(PFT.getAddressBar(), None, "Check if App Starts with Address Bar.")
+        self.assertNotEqual(PFT.getAddressBar(), None, "Check if App Starts with Address Bar.", noException=True)
         PFT.disableAddressBar()
         self.assertIsEqual(PFT.getAddressBar(), None, "Check if Address Bar does not exist.")
         urlBar = PFT.getURLBar()
@@ -109,14 +109,14 @@ class TestBasicView:
         PFT = FreshTab(self.settings)
         addressBar = PFT.enableAddressBar()
         self.assertNotEqual(addressBar, None, "Check if Address Bar exists.")
-        self.assertIsEqual(addressBar.text, "Ghost Search", "Check Address Bar Pretext.")
+        self.assertIsEqual(addressBar.text, "Search or enter address", "Check Address Bar Pretext.")
         addressBar.set_value("www.google.de")
         self.assertIsEqual(addressBar.text, "www.google.de", "Check Address Bar updates correctly.")
         addressBar.clear()
         addressBar.set_value("www.google.de")
         self.assertIsEqual(addressBar.text, "www.google.de", "Check Address Bar updates correctly again.")
         PFT.clearAndCancelAddressBar()
-        self.assertIsEqual(PFT.getURLBar().text, "Ghost Search", "Check URL Bar exists and has Pretext.")
+        self.assertIsEqual(PFT.getURLBar().text, "Search or enter address", "Check URL Bar exists and has Pretext.")
         self.assertIsEqual(PFT.getReaderModeButton(), None,
                            "Check if Reader Mode is on FreshTab.")
 
@@ -169,7 +169,7 @@ class TestBasicView:
         self.assertIsEqual(PTO.isPrivateTabsEmpty(tabsPanel), True,
                            "Check if Private Tabs List is Empty.", noException=True)
         PTO.closeAllTabs()
-        self.assertIsEqual(PFT.disableAddressBar().text, "Ghost Search",
+        self.assertIsEqual(PFT.disableAddressBar().text, "Search or enter address",
                            "Check if FreshTab is opened after removing all tabs.")
 
     @unittest.skipIf(True,
